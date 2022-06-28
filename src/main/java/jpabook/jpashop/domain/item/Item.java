@@ -14,6 +14,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype") // SingleTable이라 자식 클래스들 구분될 때 어떤식으로 할지 나오는 그런 것.
 @Getter
+@Setter
 public abstract class Item {
     @Id
     @GeneratedValue

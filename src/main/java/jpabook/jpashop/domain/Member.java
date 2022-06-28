@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +16,7 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    private String username;
+    private String name;
 
     @Embedded // 여기 내장되어 있다는 것을 알림.
     private Address address;
@@ -25,5 +26,5 @@ public class Member {
      * 즉 Order의 member를 변경하면 여기도 변경된다.
      */
     @OneToMany(mappedBy = "member")
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
 }

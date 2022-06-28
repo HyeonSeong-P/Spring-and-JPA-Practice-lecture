@@ -4,17 +4,12 @@ import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.repository.MemberRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest // JUnit5에선 @RunWith(SpringRunner.class)가 포함되어있다.
 //@ExtendWith(SpringExtension.class) // junit5에서 junit4의 RunWith가 동일한 동작
@@ -37,7 +32,7 @@ class MemberServiceTest {
     public void 회원가입() throws Exception{
         //given
         Member member = new Member();
-        member.setUsername("kim");
+        member.setName("kim");
         
         //when
         Long savedId = memberService.join(member);
@@ -52,10 +47,10 @@ class MemberServiceTest {
     public void 중복_회원_예외() throws Exception{
         //given
         Member member1 = new Member();
-        member1.setUsername("kim1");
+        member1.setName("kim1");
 
         Member member2 = new Member();
-        member2.setUsername("kim1");
+        member2.setName("kim1");
 
         //when
         memberService.join(member1);
