@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<!--타임리프의 기능을 사용할 수 있게 해준다-->
+<html xmlns:th="http://www.thymeleaf.org">
+<!--include와 유사하다. 헤더를 fragments/header로 바꾼다. 이 강의는 화면을 구성하는 위주의 강의가
+아니다 보니 타임리프의 include-style layout을 사용했는데 Hierarchical-style layout을 사용하면 코드 중복을
+줄이고 더욱 깔끔하게 작성 가능하니 타임리프 메뉴얼을 참고해보자.-->
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<!--dev tool 라이브러리 덕분에 html 파일의 수정이 생겼을 때 파일만 recompile해주면 반영된다.-->
+
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+    <div class="jumbotron">
+        <h1>HELLO SHOP</h1>
+        <p class="lead">회원 기능</p>
+        <p>
+            <a class="btn btn-lg btn-secondary" href="/members/new">회원 가입</a>
+            <a class="btn btn-lg btn-secondary" href="/members">회원 목록</a>
+        </p>
+
+        <p class="lead">상품 기능</p>
+        <p>
+            <a class="btn btn-lg btn dark" href="/items/new">상품 등록</a>
+            <a class="btn btn-lg btn dark" href="/items">상품 목록</a>
+        </p>
+
+        <p class="lead">주문 기능</p>
+        <p>
+            <a class="btn btn-lg btn-info" href="/order">상품 주문</a>
+            <a class="btn btn-lg btn-info" href="/orders">주문 내역</a>
+        </p>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div>
+</body>
+</html>

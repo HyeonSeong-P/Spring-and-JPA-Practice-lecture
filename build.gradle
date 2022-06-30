@@ -22,6 +22,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 	// html 파일 수정이 있을 시 컴파일만 해주면 서버 재시작 없이 View 파일 변경이 가능하게 도와주는 라이브러리(이외에도 다른 기능이 있다.)
 	implementation 'org.springframework.boot:spring-boot-devtools'
