@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,7 @@ public class Member {
      * -> 연관 관계의 주인을 Order 테이블의 member로 설정한다는 의미이기도 하다.
      * 즉 Order의 member를 변경하면 여기도 변경된다.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 }
