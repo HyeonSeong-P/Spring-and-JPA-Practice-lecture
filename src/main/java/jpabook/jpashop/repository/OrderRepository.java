@@ -5,6 +5,7 @@ import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -80,5 +81,27 @@ public class OrderRepository {
         ).getResultList();
     }
 
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 
+    public List<Order> findAllWithItem() {
+        /**
+         * JPQL의 distinct
+         * 1. DB에 distinct 키워드를 날려주고
+         * 2. 엔티티 중복이 있을 경우 중복을 없애준다.
+         */
+        return em.createQuery("select distinct o from Order o" + // JPQL의 distinct를 사용하면 아래와 같은 데이터 뻥튀기 문제 해결 가능
+                " join fetch o.member m" +
+                " join fetch o.delivery d" +
+                " join fetch o.orderItems oi" + // OneToMany 중 One 입장에선 데이터가 뻥튀기(중복)되어 나타난다.(ex. order 1이 여러 개의 order Item을 가지면 그에 맞게 조인 결과가 여러개 나온다)
+                " join fetch oi.item i", Order.class)
+                .getResultList();
+    }
 }

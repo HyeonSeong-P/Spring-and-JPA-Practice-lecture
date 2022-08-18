@@ -12,6 +12,7 @@ spring:
       hibernate:
 #        show_sql: true #얘는 System.out에 출력하고
         format_sql: true
+        default_batch_fetch_size: 100
 logging:
   level:
     org.hibernate.SQL: debug # 디버그 모드라 이렇게 하면 hibernate가 실행하는 SQL이 다 보임.(로거를 통해서 찍음,이렇게 해야 바람직.)
